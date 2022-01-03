@@ -4,10 +4,9 @@
     <section
       v-for="product in productsList"
       :key="product.id"
-      @click="showProductDetails(product)"
       class="products"
     >
-      <productCard :product="product" />
+      <productCard :product="product" @click="showProductDetails(product)" />
     </section>
     <ProductDetails
       :isShowProductDetails="isShowProductDetails"
