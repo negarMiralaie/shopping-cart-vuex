@@ -15,9 +15,6 @@ export default {
   name: "productCard",
   props: ["product"],
   computed: {
-    // shortDescription(){
-    //     return this.$store.getters.shortDescription
-    // }
     ...mapGetters(["shortDescription"]),
   },
 };
