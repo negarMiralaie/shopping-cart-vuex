@@ -9,7 +9,10 @@
     >
       <productCard :product="product" />
     </section>
-    <ProductDetails :isShowProductDetails="isShowProductDetails" :product="clickedProduct" />
+    <ProductDetails
+      :isShowProductDetails="isShowProductDetails"
+      :product="clickedProduct"
+    />
   </section>
 </template>
 
@@ -24,16 +27,20 @@ export default {
   components: { ProductCard, ProductDetails },
   data() {
     return {
-      isShowProductDetails: false,
-      clickedProduct: null
+      // isShowProductDetails: false,
+      clickedProduct: null,
     };
   },
   computed: {
-    ...mapState(["productsList"]),
+    ...mapState(["productsList", "isShowProductDetails"]),
   },
   methods: {
+    changeIsShowProductDetails() {
+      this.$store.commit("CHANGE_IS_SHOW_PRODUCT_DETAILS");
+    },
     showProductDetails(product) {
-      this.isShowProductDetails = true;
+      // this.isShowProductDetails = true;
+      this.changeIsShowProductDetails();
       this.clickedProduct = product;
     },
   },
