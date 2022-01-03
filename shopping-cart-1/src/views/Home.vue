@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ProductsPage from '../views/ProductsPage.vue'
+import ProductsPage from './products/ProductsPage.vue'
 
 export default {
   name: 'Home',
