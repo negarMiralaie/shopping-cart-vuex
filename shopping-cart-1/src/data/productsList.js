@@ -45,3 +45,5 @@ const productsList = [
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam quidem sunt itaque nisi animi et consequatur adipisci similique debitis, dolor illum excepturi est, tempore ipsum culpa, numquam corrupti doloremque eaque!",
   },
 ];
+
+export default productsList;
