@@ -1,29 +1,19 @@
 <template>
   <section v-if="isShowProductDetails" class="productDetailsBg">
     <section class="productDetails">
-      <p>{{ product.name }}</p>
-      <p>{{product.price}}</p>
-      <p>{{product.quantity}}</p>
-      <p>{{product.category}}</p>
-      <p>{{product.description}}</p>
+      <DisplayProduct :product="product"/>
     </section>
   </section>
 </template>
 
 <script>
 import ProductCard from "./productCard.vue";
+import DisplayProduct from './DisplayProduct.vue'
 
 export default {
   name: "ProductDetails",
-  components: { ProductCard },
-  props: ["product", "isShowProductDetails"],
-  data() {
-    return {};
-  },
-  mounted() {
-    console.log("mounted");
-    console.log(this.product);
-  },
+  components: { ProductCard, DisplayProduct},
+  props: ["product", "isShowProductDetails"]
 };
 </script>
 
