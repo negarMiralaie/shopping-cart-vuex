@@ -1,10 +1,11 @@
 <template>
   <section>
-    <h1 @click="showCart">Cart</h1>
+    <h1 @click="showCart" class="cartPageTitle">Cart</h1>
     <section v-for="(cartItem, index) in cart" :key="index" class="cartSec">
-      <h3>name: {{ cartItem["product"].name }}</h3>
-      <p>price: {{ cartItem["product"].price }}</p>
-      <small>amount: {{ cartItem["amount"] }}</small>
+      <h3>Name: {{ cartItem["product"].name }}</h3>
+      <p>Category: {{cartItem["product"].category}}</p>
+      <p>Price: {{ cartItem["product"].price }}</p>
+      <small>Amount: {{ cartItem["amount"] }}</small>
     </section>
 
   </section>
@@ -23,13 +24,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-    .cartSec{
-        background-color:#D9CAB3;
-        border-radius:10px;
-        display: flex;
-        flex-direction:column;
-        align-items:flex-start;
-    }
-</style>

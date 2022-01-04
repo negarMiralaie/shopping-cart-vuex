@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>This is cart</h1>
     <DisplayCart class="cart" />
   </div>
 </template>
@@ -16,7 +15,8 @@ export default {
 
 <style scoped>
 .cart {
-  background-color: rgb(236, 86, 86);
+  background-color: #6D9886;
+  margin-top: .5rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;

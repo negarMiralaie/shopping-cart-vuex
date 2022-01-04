@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="productCard">
     <h4>{{ product.name }}</h4>
     <p>{{ product.price }}</p>
     <p>{{ product.category }}</p>
@@ -19,12 +19,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-    section{
-        background-color:rgb(49, 44, 44);
-        border-radius:10px;
-        width: 50%;
-        padding: 1%;
-    }
-</style>

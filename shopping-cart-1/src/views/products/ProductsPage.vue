@@ -43,13 +43,3 @@ export default {
 };
 </script>
 
-<style>
-.products {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(223, 201, 243);
-  color: white;
-}
-</style>
