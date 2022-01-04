@@ -1,32 +1,6 @@
 import { createStore } from "vuex";
 import productsList from "../data/productsList";
 
-// const updateLocalStorageCart = product => {
-//   if (isLocalStorageSupported()) {
-//     addProductToLocalStorageCart(product, 1);
-//     // if (localStorage.getItem("cartProducts")) {
-//     //   addProductToLocalStorageCart(product, 1)
-//     // } else {
-//     //   localStorage.setItem("cartProducts", {})
-//     // }
-//   } else {
-//     console.log("local storage is not supported");
-//   }
-// };
-
-// const addProductToLocalStorageCart = (
-//   product,
-//   amountOfProductsForAddingToCart
-// ) => {
-//   localStorage.setItem(
-//     "cartProducts",
-//     JSON.stringify({
-//       product: product,
-//       amountInCart: amountOfProductsForAddingToCart,
-//     })
-//   );
-// };
-
 // const isLocalStorageSupported = () => {
 //   if (isLocalStorage()) {
 //     return true;
@@ -36,14 +10,17 @@ import productsList from "../data/productsList";
 // };
 
 const addToCart = (cart, product) => {
+  // localStorage.clear();
   const productIndexInCart = GetProductIndexInCart(cart, product.id);
+  console.log(JSON.parse(JSON.stringify(cart)));
+  console.log(JSON.parse(JSON.stringify(localStorage.getItem(cart))));
 
   if (productIndexInCart > -1) {
-    console.log("already in cart");
+    // console.log("already in cart");
+    console.log(productIndexInCart);
     cart[productIndexInCart].amount++;
-    console.log(JSON.parse(JSON.stringify(cart[productIndexInCart])));
   } else {
-    console.log("not in cart");
+    // console.log("not in cart");
     cart.push({ product: product, amount: 1 });
   }
 
@@ -52,18 +29,20 @@ const addToCart = (cart, product) => {
 
 const GetProductIndexInCart = (cart, productId) => {
   let productIndex = -1;
+  let index = -1;
 
   cart.forEach((cartItem) => {
+    index++;
     if (cartItem.product.id === productId) {
-      productIndex = 0;
+      productIndex = index;
       return false;
     }
   });
   return productIndex;
 };
 
-const updateLocalStorageCart = cart => {
-  localStorage.setItem("cart", JSON.stringify(cart));
+const updateLocalStorageCart = (cart) => {
+  localStorage.setItem(cart, JSON.stringify(cart));
 };
 
 export default createStore({
