@@ -68,13 +68,14 @@ export default createStore({
     //   return GetProductIndexInCart(state.cart, productId);
     // },
     productAmountInCart: (state) => (productId) => {
-      console.log(GetProductIndexInCart(state.cart, productId));
       if (GetProductIndexInCart(state.cart, productId) === -1) {
         return 0;
       }
-      return GetProductIndexInCart(state.cart, productId).amount;
+
+      return state.cart[GetProductIndexInCart(state.cart, productId)].amount;
     },
     productIsInCart: (state, getters) => (productId) => {
+      console.log("productId:", productId)
       if (getters.productAmountInCart(productId) !== 0) {
         return true;
       }

@@ -11,7 +11,6 @@
     <section v-else>
       <button @click="addToCart()">BUY</button>
     </section>
-    <h1>{{productIsInCart(product.id)}}</h1>
   </section>
 </template>
 
@@ -32,15 +31,6 @@ export default {
       // updateLocalStorageCart
       this.$store.commit("ADD_TO_CART", this.product);
     },
-  },
-  // mounted(){
-  //   console.log(this.productIsInCart(product))
-  // }
+  }
 };
 </script>
-
-<style scoped>
-h1 {
-  background-color: red;
-}
-</style>
