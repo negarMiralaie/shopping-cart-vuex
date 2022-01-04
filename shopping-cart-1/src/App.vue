@@ -12,16 +12,8 @@
 import {mapState, mapMutations} from 'vuex'
 
 export default {
-  
-  methods:{
-    syncCartWithLocalStorage(){
-      this.$store.commit("SYNC_CART_WITH_LOCAL_STORAGE");
-    }
-  },
   mounted(){
-    // localStorage.clear();
-    // syncCartWithLocalStorage();
-    this.$store.commit("SYNC_CART_WITH_LOCAL_STORAGE");
+     this.$store.commit("SYNC_CART_WITH_LOCAL_STORAGE");
   }
 }
 </script>

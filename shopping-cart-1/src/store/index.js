@@ -26,11 +26,14 @@ const addToCart = (cart, product) => {
     if (productIndexInCart === -1) {
       cart.push({ product: product, amount: 1 });
       updateLocalStorageCart(cart);
-    }else{
+    } else {
       cart[productIndexInCart].amount++;
       updateLocalStorageCart(cart);
     }
   }
+
+  return cart;
+  console.log(JSON.parse(JSON.stringify(cart)));
 };
 
 const GetProductIndexInCart = (cart, productId) => {
@@ -45,21 +48,6 @@ const GetProductIndexInCart = (cart, productId) => {
     }
   });
   return productIndex;
-
-  // if (cart === null) {
-  //   localStorage.setItem(cart, JSON.stringify(cart));
-  //   return productIndex;
-  // } else {
-  //   console.log(typeof cart);
-  //   cart.forEach((cartItem) => {
-  //     index++;
-  //     if (cartItem.product.id === productId) {
-  //       productIndex = index;
-  //       return false;
-  //     }
-  //   });
-  //   return productIndex;
-  // }
 };
 
 const updateLocalStorageCart = (cart) => {
@@ -84,13 +72,11 @@ export default createStore({
       state.isShowProductDetails = !state.isShowProductDetails;
     },
     ADD_TO_CART(state, product) {
-      console.log(typeof state.cart);
-      addToCart(state.cart, product);
+      state.cart = addToCart(state.cart, product);
     },
     SYNC_CART_WITH_LOCAL_STORAGE(state) {
       state.cart = localStorage.getItem("cart");
-      console.log(JSON.parse(JSON.stringify(state.cart)));
-    },
+    }
   },
   actions: {},
   modules: {},
