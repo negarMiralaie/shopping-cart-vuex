@@ -3,19 +3,23 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About | </router-link>
     <router-link to="/products"> Products | </router-link>
-    <router-link to="/cart"> Cart</router-link>
+    <router-link to="/cart">
+      <NavCart />
+    </router-link>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex'
+import { mapState, mapMutations } from "vuex";
+import NavCart from "./views/cart/NavCart.vue"
 
 export default {
-  mounted(){
-     this.$store.commit("SYNC_CART_WITH_LOCAL_STORAGE");
-  }
-}
+  components:{NavCart},
+  mounted() {
+    this.$store.commit("SYNC_CART_WITH_LOCAL_STORAGE");
+  },
+};
 </script>
 
 <style>
