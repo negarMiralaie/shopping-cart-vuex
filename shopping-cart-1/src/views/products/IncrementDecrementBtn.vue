@@ -1,13 +1,8 @@
 <template>
   <section class="incrementDecrementSec">
-    <section class="incrementDecrementBtns">
-      <button @click="addToCart()">Increase</button>
-      <p>{{ productAmountInCart(product.id) }}</p>
-      <button @click="decreaseAmountInCart(product.id)">Decrease</button>
-    </section>
-    <section class="removeFromCartSec">
-      <button @click="removeProductFromCart(product.id)">Remove</button>
-    </section>
+    <button @click="addToCart()">Increase</button>
+    <p>{{ productAmountInCart(product.id) }}</p>
+    <button @click="decreaseAmountInCart(product.id)">Decrease</button>
   </section>
 </template>
 
@@ -24,36 +19,23 @@ export default {
     addToCart() {
       this.$store.commit("ADD_TO_CART", this.product);
     },
-    decreaseAmountInCart() {
-      this.$store.commit("DECREASE_AMOUNT_IN_CART", this.product.id);
-    },
-    removeProductFromCart() {
-      this.$store.commit("REMOVE_PRODUCT_FROM_CART", this.product.id);
-    },
-  },
+    decreaseAmountInCart(){
+        this.$store.commit("DECREASE_AMOUNT_IN_CART", this.product.id);
+    }
+  }
 };
 </script>
 
 <style scoped>
 .incrementDecrementSec {
   display: flex;
-  flex-direction: column;
-  justify-content: end;
+  justify-content: center;
 }
 
-.incrementDecrementBtns{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.removeFromCartSec{
-    display: flex;
-    justify-content: center;
-}
-
-.removeFromCartSec button{
-    margin-top:auto;
+section {
+  display: flex;
+  text-align: center;
+  align-items: center;
 }
 
 p {
