@@ -30,10 +30,13 @@ export default {
 
 #nav {
   padding: 30px;
+  display: flex;
+  align-items: center;
 }
 
 #nav a {
   font-weight: bold;
+  /* background-color:red; */
 }
 
 #nav a.router-link-exact-active {
