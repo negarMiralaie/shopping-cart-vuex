@@ -1,0 +1,29 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* background-color: #d6d2d2; */
+  background-color: #f6f6f6;
+  color: #212121;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  padding: .5rem;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav a.router-link-exact-active{
+    color:#6D9886;
+}
