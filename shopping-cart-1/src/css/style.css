@@ -8,7 +8,6 @@
 }
 
 body {
-  /* background-color: #d6d2d2; */
   background-color: #f6f6f6;
   color: #212121;
 }
@@ -16,7 +15,7 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-  padding: .5rem;
+  padding: 0.5rem;
   font-weight: bold;
 }
 
@@ -30,6 +29,14 @@ a {
 }
 
 .nav a.router-link-exact-active {
-  color: #6D9886;
+  color: #6d9886;
+}
+
+.nav a.router-link-exact-active .cartIconAndBadgeSec .navCartBadge {
+  background-color: #212121;
+}
+
+.nav a.router-link-exact-active .cartIconAndBadgeSec p {
+  color: #d9cab3;
 }
 /*# sourceMappingURL=style.css.map */

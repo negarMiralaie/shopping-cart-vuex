@@ -22,29 +22,22 @@ export default {
 <style scoped>
 
 .navCartContainer {
-  /* background-color:rgb(50, 117, 205); */
   display: flex;
   height: 100%;
 }
 
 .cartIconAndBadgeSec {
   position: relative;
-  /* background-color:yellowgreen; */
   display: flex;
   align-items: center;
 }
 
 .cartIconAndBadgeSec p{
-  color: #D9CAB3;
-}
-
-.cartIcon{
-  /* background:red; */
+  color: #212121;
 }
 
 .navCartBadge {
-  /* background-color:#D9CAB3; */
-  background-color:black;
+  background-color:#D9CAB3;
   width: 12px;
   height: 12px;
   border-radius:8px;

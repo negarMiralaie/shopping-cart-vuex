@@ -7,7 +7,6 @@
 }
 
 body {
-  /* background-color: #d6d2d2; */
   background-color: #f6f6f6;
   color: #212121;
 }
@@ -15,7 +14,7 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-  padding: .5rem;
+  padding: 0.5rem;
   font-weight: bold;
 }
 
@@ -24,6 +23,16 @@ a {
   align-items: center;
 }
 
-.nav a.router-link-exact-active{
-    color:#6D9886;
+.nav a.router-link-exact-active {
+  color: #6d9886;
+
+  .cartIconAndBadgeSec {
+    .navCartBadge {
+      background-color: #212121;
+    }
+
+    p {
+      color: #d9cab3;
+    }
+  }
 }
