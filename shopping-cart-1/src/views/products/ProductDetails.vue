@@ -1,5 +1,5 @@
 <template>
-  <section v-if="isShowProductDetails" class="productDetailsBg">
+  <section v-if="isShowProductDetails" @click="closeProductDetails" class="productDetailsBg">
     <section class="productDetails">
       <DisplayProduct :product="product"/>
     </section>
@@ -9,17 +9,28 @@
 <script>
 import ProductCard from "./productCard.vue";
 import DisplayProduct from './DisplayProduct.vue'
+import {mapMutations} from 'vuex'
 
 export default {
   name: "ProductDetails",
   components: { ProductCard, DisplayProduct},
-  props: ["product", "isShowProductDetails"]
+  props: ["product", "isShowProductDetails"],
+  methods:{
+    changeIsShowProductDetails() {
+      this.$store.commit("CHANGE_IS_SHOW_PRODUCT_DETAILS");
+    },
+    closeProductDetails(event){
+      if(event.target.className.includes('productDetailsBg')){
+        this.changeIsShowProductDetails();
+      }
+    }
+  }
 };
 </script>
 
 <style scoped>
 .productDetailsBg{
-  background-color: rgb(126, 119, 119);
+  background-color: rgba(0,0,0,0.6);
   position: fixed;
   top: 0;
   right: 0;

@@ -17,7 +17,7 @@
 
 <script>
 import ProductCard from "./productCard.vue";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import productsList from "../../data/productsList";
 import ProductDetails from "./ProductDetails.vue";
 
@@ -31,7 +31,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["productsList", "isShowProductDetails"]),
+    ...mapState(["productsList", "isShowProductDetails", "cart"]),
   },
   methods: {
     changeIsShowProductDetails() {
