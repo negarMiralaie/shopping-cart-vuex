@@ -2,7 +2,7 @@
   <section class="incrementDecrementSec">
     <button @click="addToCart()">Increase</button>
     <p>{{ productAmountInCart(product.id) }}</p>
-    <button>Decrease</button>
+    <button @click="decreaseAmountInCart(product.id)">Decrease</button>
   </section>
 </template>
 
@@ -19,6 +19,9 @@ export default {
     addToCart() {
       this.$store.commit("ADD_TO_CART", this.product);
     },
+    decreaseAmountInCart(){
+        this.$store.commit("DECREASE_AMOUNT_IN_CART", this.product.id);
+    }
   }
 };
 </script>

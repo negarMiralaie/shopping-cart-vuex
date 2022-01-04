@@ -26,7 +26,7 @@ const GetProductIndexInCart = (cart, productId) => {
   let productIndex = -1;
   let index = -1;
 
-  if (cart===null || Object.keys(cart).length === 0) {
+  if (cart === null || Object.keys(cart).length === 0) {
     return index;
   }
 
@@ -37,12 +37,24 @@ const GetProductIndexInCart = (cart, productId) => {
       return false;
     }
   });
-  // console.log("productIndex:", productIndex);
   return productIndex;
 };
 
 const updateLocalStorageCart = (cart) => {
   localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+const removeProductFromCart = (state, productId) => {
+  delete state.cart.getters.GetProductIndexInCart(state.cart, productId);
+  console.log(state.cart);
+};
+
+const productAmountInCartOutsideFunc = (state, getters, productId) => {
+  if (GetProductIndexInCart(state.cart, productId) === -1) {
+    return 0;
+  }
+
+  return state.cart[GetProductIndexInCart(state.cart, productId)].amount;
 };
 
 export default createStore({
@@ -75,7 +87,7 @@ export default createStore({
       return state.cart[GetProductIndexInCart(state.cart, productId)].amount;
     },
     productIsInCart: (state, getters) => (productId) => {
-      console.log("productId:", productId)
+      console.log("productId:", productId);
       if (getters.productAmountInCart(productId) !== 0) {
         return true;
       }
@@ -91,7 +103,20 @@ export default createStore({
     },
     SYNC_CART_WITH_LOCAL_STORAGE(state) {
       state.cart = JSON.parse(localStorage.getItem("cart"));
-    }
+    },
+    DECREASE_AMOUNT_IN_CART(state, productId) {
+      console.log(productAmountInCartOutsideFunc(state, productId) === 1, productId);
+      if (productAmountInCartOutsideFunc(state, productId) === 1) {
+        // this.commit("REMOVE_PRODUCT_FROM_CART", productId);
+        removeProductFromCart(state, productId);
+      } else {
+        state.cart[GetProductIndexInCart(state.cart, productId)].amount--;
+        updateLocalStorageCart(state.cart);
+      }
+    },
+    REMOVE_PRODUCT_FROM_CART(state, productId) {
+      removeProductFromCart(state, productId);
+    },
   },
   actions: {},
   modules: {},
