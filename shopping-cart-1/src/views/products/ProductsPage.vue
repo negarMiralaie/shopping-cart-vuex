@@ -1,5 +1,4 @@
 <template>
-  <!-- <h2>Products:</h2> -->
   <section>
     <section
       v-for="product in productsList"
@@ -26,7 +25,6 @@ export default {
   components: { ProductCard, ProductDetails },
   data() {
     return {
-      // isShowProductDetails: false,
       clickedProduct: null,
     };
   },
@@ -38,7 +36,6 @@ export default {
       this.$store.commit("CHANGE_IS_SHOW_PRODUCT_DETAILS");
     },
     showProductDetails(product) {
-      // this.isShowProductDetails = true;
       this.changeIsShowProductDetails();
       this.clickedProduct = product;
     },
