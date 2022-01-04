@@ -15,7 +15,6 @@ import productsList from "../data/productsList";
 // }
 
 const addToCart = (cart, product) => {
-
   if (localStorage.getItem("cart") === null) {
     localStorage.setItem("cart", JSON.stringify([]));
     cart = JSON.parse(localStorage.getItem("cart"));
@@ -23,8 +22,14 @@ const addToCart = (cart, product) => {
     updateLocalStorageCart(cart);
   } else {
     cart = JSON.parse(localStorage.getItem("cart"));
-    cart.push({ product: product, amount: 10 });
-    updateLocalStorageCart(cart);
+    let productIndexInCart = GetProductIndexInCart(cart, product.id);
+    if (productIndexInCart === -1) {
+      cart.push({ product: product, amount: 1 });
+      updateLocalStorageCart(cart);
+    }else{
+      cart[productIndexInCart].amount++;
+      updateLocalStorageCart(cart);
+    }
   }
 };
 
@@ -32,20 +37,29 @@ const GetProductIndexInCart = (cart, productId) => {
   let productIndex = -1;
   let index = -1;
 
-  if (cart === null) {
-    localStorage.setItem(cart, JSON.stringify(cart));
-    return productIndex;
-  } else {
-    console.log(typeof cart);
-    cart.forEach((cartItem) => {
-      index++;
-      if (cartItem.product.id === productId) {
-        productIndex = index;
-        return false;
-      }
-    });
-    return productIndex;
-  }
+  cart.forEach((cartItem) => {
+    index++;
+    if (cartItem.product.id === productId) {
+      productIndex = index;
+      return false;
+    }
+  });
+  return productIndex;
+
+  // if (cart === null) {
+  //   localStorage.setItem(cart, JSON.stringify(cart));
+  //   return productIndex;
+  // } else {
+  //   console.log(typeof cart);
+  //   cart.forEach((cartItem) => {
+  //     index++;
+  //     if (cartItem.product.id === productId) {
+  //       productIndex = index;
+  //       return false;
+  //     }
+  //   });
+  //   return productIndex;
+  // }
 };
 
 const updateLocalStorageCart = (cart) => {
@@ -70,7 +84,7 @@ export default createStore({
       state.isShowProductDetails = !state.isShowProductDetails;
     },
     ADD_TO_CART(state, product) {
-      console.log(typeof state.cart)
+      console.log(typeof state.cart);
       addToCart(state.cart, product);
     },
     SYNC_CART_WITH_LOCAL_STORAGE(state) {
