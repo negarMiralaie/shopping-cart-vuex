@@ -91,7 +91,7 @@ export default createStore({
     },
     SYNC_CART_WITH_LOCAL_STORAGE(state) {
       state.cart = JSON.parse(localStorage.getItem("cart"));
-    },
+    }
   },
   actions: {},
   modules: {},

@@ -1,13 +1,13 @@
 <template>
   <section class="incrementDecrementSec">
-    <button>Increase</button>
-    <p>{{productAmountInCart(product.id)}}</p>
+    <button @click="addToCart()">Increase</button>
+    <p>{{ productAmountInCart(product.id) }}</p>
     <button>Decrease</button>
   </section>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "IncrementDecrementBtn",
@@ -15,13 +15,18 @@ export default {
   computed: {
     ...mapGetters(["productAmountInCart"]),
   },
+  methods: {
+    addToCart() {
+      this.$store.commit("ADD_TO_CART", this.product);
+    },
+  }
 };
 </script>
 
 <style scoped>
-.incrementDecrementSec{
-    display: flex;
-    justify-content: center;
+.incrementDecrementSec {
+  display: flex;
+  justify-content: center;
 }
 
 section {
@@ -30,10 +35,10 @@ section {
   align-items: center;
 }
 
-p{
-    padding: 0 5px;
-    border: solid 1px;
-    border-left: none;
-    border-right: none;
+p {
+  padding: 0 5px;
+  border: solid 1px;
+  border-left: none;
+  border-right: none;
 }
 </style>
