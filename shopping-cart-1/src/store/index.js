@@ -18,6 +18,7 @@ const addToCart = (cart, product) => {
       updateLocalStorageCart(cart);
     }
   }
+
   return cart;
 };
 
@@ -74,6 +75,10 @@ export default createStore({
       }
       return Object.keys(state.cart).length;
     },
+    // getProductInfoInCart: (state) => (productId) => {
+    //   console.log(GetProductIndexInCart(state.cart, productId));
+    //   return GetProductIndexInCart(state.cart, productId);
+    // },
     productAmountInCart: (state) => (productId) => {
       if (GetProductIndexInCart(state.cart, productId) === -1) {
         return 0;
@@ -100,6 +105,7 @@ export default createStore({
       state.cart = JSON.parse(localStorage.getItem("cart"));
     },
     DECREASE_AMOUNT_IN_CART(state, productId) {
+      console.log(productAmountInCartOutsideFunc(state, productId) === 1, productId);
       if (productAmountInCartOutsideFunc(state, productId) === 1) {
         // this.commit("REMOVE_PRODUCT_FROM_CART", productId);
         removeProductFromCart(state, productId);
