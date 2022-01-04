@@ -29,7 +29,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["productsList", "isShowProductDetails", "cart"]),
+    ...mapState(["productsList", "isShowProductDetails", "cart", "productIsInCart"]),
   },
   methods: {
     changeIsShowProductDetails() {
@@ -38,6 +38,7 @@ export default {
     showProductDetails(product) {
       this.changeIsShowProductDetails();
       this.clickedProduct = product;
+      // console.log(this.productIsInCart(product));
     },
   },
 };

@@ -24,7 +24,7 @@ export default {
         this.changeIsShowProductDetails();
       }
     }
-  }
+  },
 };
 </script>
 

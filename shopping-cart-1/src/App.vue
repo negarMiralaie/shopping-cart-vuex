@@ -16,6 +16,7 @@ import NavCart from "./views/cart/NavCart.vue"
 export default {
   components:{NavCart},
   mounted() {
+    // localStorage.clear();
     this.$store.commit("SYNC_CART_WITH_LOCAL_STORAGE");
   },
 };

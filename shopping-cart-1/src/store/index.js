@@ -20,12 +20,15 @@ const addToCart = (cart, product) => {
   }
 
   return cart;
-  console.log(JSON.parse(JSON.stringify(cart)));
 };
 
 const GetProductIndexInCart = (cart, productId) => {
   let productIndex = -1;
   let index = -1;
+
+  if (cart===null || Object.keys(cart).length === 0) {
+    return index;
+  }
 
   cart.forEach((cartItem) => {
     index++;
@@ -34,6 +37,7 @@ const GetProductIndexInCart = (cart, productId) => {
       return false;
     }
   });
+  // console.log("productIndex:", productIndex);
   return productIndex;
 };
 
@@ -54,8 +58,28 @@ export default createStore({
         .description.substring(0, 50);
     },
     cartLength: (state) => {
+      if (localStorage.getItem("cart") === null) {
+        return 0;
+      }
       return Object.keys(state.cart).length;
-    }
+    },
+    // getProductInfoInCart: (state) => (productId) => {
+    //   console.log(GetProductIndexInCart(state.cart, productId));
+    //   return GetProductIndexInCart(state.cart, productId);
+    // },
+    productAmountInCart: (state) => (productId) => {
+      console.log(GetProductIndexInCart(state.cart, productId));
+      if (GetProductIndexInCart(state.cart, productId) === -1) {
+        return 0;
+      }
+      return GetProductIndexInCart(state.cart, productId).amount;
+    },
+    productIsInCart: (state, getters) => (productId) => {
+      if (getters.productAmountInCart(productId) !== 0) {
+        return true;
+      }
+      return false;
+    },
   },
   mutations: {
     CHANGE_IS_SHOW_PRODUCT_DETAILS(state) {
@@ -63,7 +87,6 @@ export default createStore({
     },
     ADD_TO_CART(state, product) {
       state.cart = addToCart(state.cart, product);
-      console.log(JSON.parse(JSON.stringify(typeof state.cart)));
     },
     SYNC_CART_WITH_LOCAL_STORAGE(state) {
       state.cart = JSON.parse(localStorage.getItem("cart"));
