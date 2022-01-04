@@ -35,37 +35,42 @@ import productsList from "../data/productsList";
 //   return false;
 // };
 
-const addToCart =(cart, product, amount) =>{
-  if (isProductInCart(cart, product)){
-    console.log("already in cart")
-  }else{
-    console.log("not in cart");
-    cart[product] = "amount";
-    // object.assign(cart, {product: amount})
-    console.log(JSON.parse(JSON.stringify(cart)));
-  }
-  
-  
-  
-  updateLocalStorageCart(cart);
-}
+const addToCart = (cart, product) => {
+  const productIndexInCart = GetProductIndexInCart(cart, product.id);
 
-const isProductInCart = (cart, product) => {
-  if(product in cart){
-    return true;
+  if (productIndexInCart > -1) {
+    console.log("already in cart");
+    cart[productIndexInCart].amount++;
+    console.log(JSON.parse(JSON.stringify(cart[productIndexInCart])));
+  } else {
+    console.log("not in cart");
+    cart.push({ product: product, amount: 1 });
   }
-  return false;
+
+  updateLocalStorageCart(cart);
 };
 
-const updateLocalStorageCart = (cart) =>{
-  localStorage.setItem('cart', JSON.stringify(cart));
-}
+const GetProductIndexInCart = (cart, productId) => {
+  let productIndex = -1;
+
+  cart.forEach((cartItem) => {
+    if (cartItem.product.id === productId) {
+      productIndex = 0;
+      return false;
+    }
+  });
+  return productIndex;
+};
+
+const updateLocalStorageCart = cart => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
 
 export default createStore({
   state: {
     productsList: productsList,
     isShowProductDetails: false,
-    cart: {"a": "b"},
+    cart: [],
   },
   getters: {
     shortDescription: (state) => (product) => {
@@ -83,7 +88,7 @@ export default createStore({
       // updateLocalStorageCart();
       // console.log(state.cart);
       addToCart(state.cart, product);
-    }
+    },
   },
   actions: {},
   modules: {},
