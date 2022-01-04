@@ -1,19 +1,6 @@
 import { createStore } from "vuex";
 import productsList from "../data/productsList";
 
-// const isLocalStorageSupported = () => {
-//   if (isLocalStorage()) {
-//     return true;
-//   }
-
-//   return false;
-// };
-
-// const syncCartWithLocalStorage = (cart) =>{
-//   cart = localStorage.getItem(cart);
-//   console.log(JSON.parse(JSON.stringify(cart)));
-// }
-
 const addToCart = (cart, product) => {
   if (localStorage.getItem("cart") === null) {
     localStorage.setItem("cart", JSON.stringify([]));
@@ -66,6 +53,7 @@ export default createStore({
         .find((productListItem) => productListItem.id === product.id)
         .description.substring(0, 50);
     },
+    getCartProducts: (state) => {},
   },
   mutations: {
     CHANGE_IS_SHOW_PRODUCT_DETAILS(state) {
@@ -73,10 +61,11 @@ export default createStore({
     },
     ADD_TO_CART(state, product) {
       state.cart = addToCart(state.cart, product);
+      console.log(JSON.parse(JSON.stringify(typeof state.cart)));
     },
     SYNC_CART_WITH_LOCAL_STORAGE(state) {
-      state.cart = localStorage.getItem("cart");
-    }
+      state.cart = JSON.parse(localStorage.getItem("cart"));
+    },
   },
   actions: {},
   modules: {},
