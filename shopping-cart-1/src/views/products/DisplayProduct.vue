@@ -15,7 +15,7 @@ import { mapState, mapMutations } from "vuex";
 export default {
   name: "DisplayProduct",
   props: ["product"],
-  computed: { ...mapState(["isShowProductDetails", "cart"]) },
+  computed: { ...mapState(["isShowProductDetails"]) },
   methods: {
     addToCart() {
       // updateLocalStorageCart
