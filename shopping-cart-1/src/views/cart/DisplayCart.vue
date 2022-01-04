@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
     .cartSec{
-        background-color:rgb(169, 169, 245);
+        background-color:#D9CAB3;
         border-radius:10px;
         display: flex;
         flex-direction:column;

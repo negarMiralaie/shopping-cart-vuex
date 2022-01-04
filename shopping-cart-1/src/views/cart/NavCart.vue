@@ -3,14 +3,19 @@
     <p>Cart</p>
     <section class="cartIconAndBadgeSec">
       <font-awesome-icon icon="shopping-cart" class="cartIcon" />
-      <p class="navCartBadge">0</p>
+      <p class="navCartBadge">{{cartLength}}</p>
     </section>
   </section>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: "NavCart",
+  computed: {
+    ...mapGetters(["cartLength"]),
+  },
 };
 </script>
 

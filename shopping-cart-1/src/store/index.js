@@ -53,7 +53,9 @@ export default createStore({
         .find((productListItem) => productListItem.id === product.id)
         .description.substring(0, 50);
     },
-    getCartProducts: (state) => {},
+    cartLength: (state) => {
+      return Object.keys(state.cart).length;
+    }
   },
   mutations: {
     CHANGE_IS_SHOW_PRODUCT_DETAILS(state) {
