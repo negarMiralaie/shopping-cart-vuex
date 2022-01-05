@@ -24,12 +24,11 @@ export default {
 
 <style>
 
-#nav a {
+/* #nav a {
   font-weight: bold;
-  /* background-color:red; */
-}
+} */
 
-#nav a.router-link-exact-active {
+/* #nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 </style>

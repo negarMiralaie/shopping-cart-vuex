@@ -9,7 +9,7 @@ const addToCart = (cart, product) => {
 
   } else {
     cart = JSON.parse(localStorage.getItem("cart"));
-    let productIndexInCart = GetProductIndexInCart(cart, product.id);
+    let productIndexInCart = getProductIndexInCart(cart, product.id);
 
     if (productIndexInCart === -1) {
       cart.push({ product: product, amount: 1 });
@@ -22,7 +22,7 @@ const addToCart = (cart, product) => {
   return cart;
 };
 
-const GetProductIndexInCart = (cart, productId) => {
+const getProductIndexInCart = (cart, productId) => {
   let productIndex = -1;
   let index = -1;
 
@@ -45,17 +45,16 @@ const updateLocalStorageCart = (cart) => {
 };
 
 const removeProductFromCart = (cart, productId) => {
-  // delete cart.;
-  cart.splice(GetProductIndexInCart(cart, productId), 1);
+  cart.splice(getProductIndexInCart(cart, productId), 1);
   updateLocalStorageCart(cart);
 };
 
-const productAmountInCartOutsideFunc = (cart, productId) => {
-  if (GetProductIndexInCart(cart, productId) === -1) {
+const getProductAmountInCartOutsideFunc = (cart, productId) => {
+  if (getProductIndexInCart(cart, productId) === -1) {
     return 0;
   }
 
-  return cart[GetProductIndexInCart(cart, productId)].amount;
+  return cart[getProductIndexInCart(cart, productId)].amount;
 };
 
 export default createStore({
@@ -78,11 +77,11 @@ export default createStore({
       return Object.keys(state.cart).length;
     },
     productAmountInCart: (state) => (productId) => {
-      if (GetProductIndexInCart(state.cart, productId) === -1) {
+      if (getProductIndexInCart(state.cart, productId) === -1) {
         return 0;
       }
 
-      return state.cart[GetProductIndexInCart(state.cart, productId)].amount;
+      return state.cart[getProductIndexInCart(state.cart, productId)].amount;
     },
     productIsInCart: (state, getters) => (productId) => {
       if (getters.productAmountInCart(productId) !== 0) {
@@ -102,11 +101,11 @@ export default createStore({
       state.cart = JSON.parse(localStorage.getItem("cart"));
     },
     DECREASE_AMOUNT_IN_CART(state, productId) {
-      if (productAmountInCartOutsideFunc(state.cart, productId) === 1) {
+      if (getProductAmountInCartOutsideFunc(state.cart, productId) === 1) {
         // this.commit("REMOVE_PRODUCT_FROM_CART", productId);
         removeProductFromCart(state.cart, productId);
       } else {
-        state.cart[GetProductIndexInCart(state.cart, productId)].amount--;
+        state.cart[getProductIndexInCart(state.cart, productId)].amount--;
         updateLocalStorageCart(state.cart);
       }
     },
