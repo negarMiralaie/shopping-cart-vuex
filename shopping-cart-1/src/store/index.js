@@ -6,18 +6,19 @@ const addToCart = (cart, product) => {
     localStorage.setItem("cart", JSON.stringify([]));
     cart = JSON.parse(localStorage.getItem("cart"));
     cart.push({ product: product, amount: 1 });
-    updateLocalStorageCart(cart);
+    
   } else {
     cart = JSON.parse(localStorage.getItem("cart"));
     let productIndexInCart = GetProductIndexInCart(cart, product.id);
+
     if (productIndexInCart === -1) {
       cart.push({ product: product, amount: 1 });
-      updateLocalStorageCart(cart);
     } else {
       cart[productIndexInCart].amount++;
-      updateLocalStorageCart(cart);
     }
   }
+
+  updateLocalStorageCart(cart);
 
   return cart;
 };
@@ -105,7 +106,10 @@ export default createStore({
       state.cart = JSON.parse(localStorage.getItem("cart"));
     },
     DECREASE_AMOUNT_IN_CART(state, productId) {
-      console.log(productAmountInCartOutsideFunc(state, productId) === 1, productId);
+      console.log(
+        productAmountInCartOutsideFunc(state, productId) === 1,
+        productId
+      );
       if (productAmountInCartOutsideFunc(state, productId) === 1) {
         // this.commit("REMOVE_PRODUCT_FROM_CART", productId);
         removeProductFromCart(state, productId);
