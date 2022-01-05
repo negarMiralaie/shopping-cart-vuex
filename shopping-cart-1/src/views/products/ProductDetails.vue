@@ -20,7 +20,8 @@ export default {
       this.$store.commit("CHANGE_IS_SHOW_PRODUCT_DETAILS");
     },
     closeProductDetails(event){
-      if(event.target.className.includes('productDetailsBg')){
+      console.log(event.target.className)
+      if(event.target.className==='productDetailsBg'){
         this.changeIsShowProductDetails();
       }
     }

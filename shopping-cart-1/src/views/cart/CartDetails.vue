@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <section>
     <DisplayCart class="cart" />
-  </div>
+  </section>
 </template>
 
 <script>
