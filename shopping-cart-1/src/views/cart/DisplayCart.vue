@@ -11,22 +11,22 @@
       <p>Category: {{ cartItem["product"].category }}</p>
       <p>Price: {{ cartItem["product"].price }}</p>
       <small>Amount: {{ cartItem["amount"] }}</small>
+      <ProductDetails
+        :isShowProductDetails="isShowProductDetails"
+        :product='cartItem["product"]'
+      />
     </section>
   </section>
-  <ProductDetails
-    :isShowProductDetails="isShowProductDetails"
-    :product="product"
-  />
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import ProductDetails from '../products/ProductDetails.vue'
+import ProductDetails from "../products/ProductDetails.vue";
 
 export default {
   name: "DisplayCart",
   computed: { ...mapState(["isShowProductDetails", "cart"]) },
-  components: {ProductDetails},
+  components: { ProductDetails },
   methods: {
     changeIsShowProductDetails() {
       this.$store.commit("CHANGE_IS_SHOW_PRODUCT_DETAILS");
@@ -34,7 +34,6 @@ export default {
     showProductDetails(product) {
       this.changeIsShowProductDetails();
       this.clickedProduct = product;
-      console.log("here finally", this.isShowProductDetails);
     },
   },
 };

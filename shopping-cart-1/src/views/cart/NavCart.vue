@@ -15,9 +15,6 @@ export default {
   name: "NavCart",
   computed: {
     ...mapGetters(["cartLength"]),
-  },
-  mounted(){
-    console.log("NAVCART MOUNTED")
   }
 };
 </script>

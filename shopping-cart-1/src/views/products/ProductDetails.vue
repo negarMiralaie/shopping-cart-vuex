@@ -24,9 +24,6 @@ export default {
         this.changeIsShowProductDetails();
       }
     }
-  },
-  mounted(){
-    console.log("mounted")
   }
 };
 </script>
