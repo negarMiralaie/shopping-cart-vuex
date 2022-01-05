@@ -3,7 +3,7 @@
     <p>Cart</p>
     <section class="cartIconAndBadgeSec">
       <font-awesome-icon icon="shopping-cart" class="cartIcon" />
-      <p class="navCartBadge">{{cartLength}}</p>
+      <p v-if="cartLength>0" class="navCartBadge">{{cartLength}}</p>
     </section>
   </section>
 </template>
@@ -16,6 +16,9 @@ export default {
   computed: {
     ...mapGetters(["cartLength"]),
   },
+  mounted(){
+    console.log("NAVCART MOUNTED")
+  }
 };
 </script>
 

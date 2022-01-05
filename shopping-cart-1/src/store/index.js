@@ -48,7 +48,6 @@ const removeProductFromCart = (cart, productId) => {
   // delete cart.;
   cart.splice(GetProductIndexInCart(cart, productId), 1);
   updateLocalStorageCart(cart);
-  // console.log(state.cart);
 };
 
 const productAmountInCartOutsideFunc = (cart, productId) => {
@@ -75,13 +74,9 @@ export default createStore({
       if (localStorage.getItem("cart") === null) {
         return 0;
       }
-      // console.log(Object.keys(state.cart).length);
+
       return Object.keys(state.cart).length;
     },
-    // getProductInfoInCart: (state) => (productId) => {
-    //   console.log(GetProductIndexInCart(state.cart, productId));
-    //   return GetProductIndexInCart(state.cart, productId);
-    // },
     productAmountInCart: (state) => (productId) => {
       if (GetProductIndexInCart(state.cart, productId) === -1) {
         return 0;
@@ -108,7 +103,6 @@ export default createStore({
     },
     DECREASE_AMOUNT_IN_CART(state, productId) {
       if (productAmountInCartOutsideFunc(state.cart, productId) === 1) {
-        console.log("here?")
         // this.commit("REMOVE_PRODUCT_FROM_CART", productId);
         removeProductFromCart(state.cart, productId);
       } else {
@@ -117,7 +111,6 @@ export default createStore({
       }
     },
     REMOVE_PRODUCT_FROM_CART(state, productId) {
-      console.log("or here?")
       removeProductFromCart(state.cart, productId);
     },
   },

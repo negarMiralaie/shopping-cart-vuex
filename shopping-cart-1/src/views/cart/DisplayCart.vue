@@ -1,20 +1,41 @@
 <template>
   <section>
     <h1 class="cartPageTitle">Cart</h1>
-    <section v-for="(cartItem, index) in cart" :key="index" class="cartSec">
+    <section
+      v-for="(cartItem, index) in cart"
+      :key="index"
+      @click="showProductDetails(product)"
+      class="cartSec"
+    >
       <h3>Name: {{ cartItem["product"].name }}</h3>
-      <p>Category: {{cartItem["product"].category}}</p>
+      <p>Category: {{ cartItem["product"].category }}</p>
       <p>Price: {{ cartItem["product"].price }}</p>
       <small>Amount: {{ cartItem["amount"] }}</small>
     </section>
   </section>
+  <ProductDetails
+    :isShowProductDetails="isShowProductDetails"
+    :product="product"
+  />
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
+import ProductDetails from '../products/ProductDetails.vue'
 
 export default {
   name: "DisplayCart",
-  computed: { ...mapState(["isShowProductDetails", "cart"]) }
+  computed: { ...mapState(["isShowProductDetails", "cart"]) },
+  components: {ProductDetails},
+  methods: {
+    changeIsShowProductDetails() {
+      this.$store.commit("CHANGE_IS_SHOW_PRODUCT_DETAILS");
+    },
+    showProductDetails(product) {
+      this.changeIsShowProductDetails();
+      this.clickedProduct = product;
+      console.log("here finally", this.isShowProductDetails);
+    },
+  },
 };
 </script>

@@ -38,7 +38,6 @@ export default {
     showProductDetails(product) {
       this.changeIsShowProductDetails();
       this.clickedProduct = product;
-      // console.log(this.productIsInCart(product));
     },
   },
 };
