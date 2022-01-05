@@ -6,7 +6,7 @@ const addToCart = (cart, product) => {
     localStorage.setItem("cart", JSON.stringify([]));
     cart = JSON.parse(localStorage.getItem("cart"));
     cart.push({ product: product, amount: 1 });
-    
+
   } else {
     cart = JSON.parse(localStorage.getItem("cart"));
     let productIndexInCart = GetProductIndexInCart(cart, product.id);
@@ -19,7 +19,6 @@ const addToCart = (cart, product) => {
   }
 
   updateLocalStorageCart(cart);
-
   return cart;
 };
 
@@ -74,6 +73,7 @@ export default createStore({
       if (localStorage.getItem("cart") === null) {
         return 0;
       }
+      // console.log(Object.keys(state.cart).length);
       return Object.keys(state.cart).length;
     },
     // getProductInfoInCart: (state) => (productId) => {
@@ -88,7 +88,6 @@ export default createStore({
       return state.cart[GetProductIndexInCart(state.cart, productId)].amount;
     },
     productIsInCart: (state, getters) => (productId) => {
-      console.log("productId:", productId);
       if (getters.productAmountInCart(productId) !== 0) {
         return true;
       }
