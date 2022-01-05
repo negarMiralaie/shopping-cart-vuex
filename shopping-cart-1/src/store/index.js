@@ -44,17 +44,19 @@ const updateLocalStorageCart = (cart) => {
   localStorage.setItem("cart", JSON.stringify(cart));
 };
 
-const removeProductFromCart = (state, productId) => {
-  delete state.cart.getters.GetProductIndexInCart(state.cart, productId);
-  console.log(state.cart);
+const removeProductFromCart = (cart, productId) => {
+  // delete cart.;
+  cart.splice(GetProductIndexInCart(cart, productId), 1);
+  updateLocalStorageCart(cart);
+  // console.log(state.cart);
 };
 
-const productAmountInCartOutsideFunc = (state, getters, productId) => {
-  if (GetProductIndexInCart(state.cart, productId) === -1) {
+const productAmountInCartOutsideFunc = (cart, productId) => {
+  if (GetProductIndexInCart(cart, productId) === -1) {
     return 0;
   }
 
-  return state.cart[GetProductIndexInCart(state.cart, productId)].amount;
+  return cart[GetProductIndexInCart(cart, productId)].amount;
 };
 
 export default createStore({
@@ -105,20 +107,18 @@ export default createStore({
       state.cart = JSON.parse(localStorage.getItem("cart"));
     },
     DECREASE_AMOUNT_IN_CART(state, productId) {
-      console.log(
-        productAmountInCartOutsideFunc(state, productId) === 1,
-        productId
-      );
-      if (productAmountInCartOutsideFunc(state, productId) === 1) {
+      if (productAmountInCartOutsideFunc(state.cart, productId) === 1) {
+        console.log("here?")
         // this.commit("REMOVE_PRODUCT_FROM_CART", productId);
-        removeProductFromCart(state, productId);
+        removeProductFromCart(state.cart, productId);
       } else {
         state.cart[GetProductIndexInCart(state.cart, productId)].amount--;
         updateLocalStorageCart(state.cart);
       }
     },
     REMOVE_PRODUCT_FROM_CART(state, productId) {
-      removeProductFromCart(state, productId);
+      console.log("or here?")
+      removeProductFromCart(state.cart, productId);
     },
   },
   actions: {},
